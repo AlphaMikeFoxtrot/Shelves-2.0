@@ -9,4 +9,7 @@
     <string name="shared_preference_name">current_user_details</string>
     <string name="shared_preference_username">current_user_username</string>
     <string name="shared_preference_login_boolean">current_user_is_logged_in</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
