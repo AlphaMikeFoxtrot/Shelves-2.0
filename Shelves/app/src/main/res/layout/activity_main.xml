@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@android:color/white"
+    android:layout_height="match_parent"
+    android:paddingTop="35dp"
+    android:gravity="center"
+    tools:context="com.anonymous.shelves.MainActivity">
+
+    <TextView
+        android:id="@+id/heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome to SHELVES!"
+        android:gravity="center"
+        android:layout_margin="12dp"
+        android:fontFamily="sans-serif-smallcaps"
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_below="@id/heading"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/shelves_logo"
+        android:layout_width="250dp"
+        android:layout_height="250dp" />
+
+    <Button
+        android:id="@+id/sign_in_up"
+        android:layout_below="@id/logo"
+        android:textSize="22sp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-smallcaps"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:textStyle="bold"
+        android:text="SIGN IN or SIGN UP"/>
+
+</RelativeLayout>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1045869082139",
+    "firebase_url": "https://shelves-44dd3.firebaseio.com",
+    "project_id": "shelves-44dd3",
+    "storage_bucket": "shelves-44dd3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045869082139:android:85b35c3e018b48fe",
+        "android_client_info": {
+          "package_name": "com.anonymous.shelves"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1045869082139-8j1pnn5udu76odfkc2fq4egchqv1p6pc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.anonymous.shelves",
+            "certificate_hash": "8e3dac281363514ad63dcb1700f992d94ae14519"
+          }
+        },
+        {
+          "client_id": "1045869082139-iookvdshf8m2uv57r5bnnm9js7qr3gmu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoR43DSf8EZasidWFrsIkJghyhJMpsuhY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1045869082139-iookvdshf8m2uv57r5bnnm9js7qr3gmu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
