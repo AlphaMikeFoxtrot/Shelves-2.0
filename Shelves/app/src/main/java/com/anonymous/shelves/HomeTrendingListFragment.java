@@ -13,7 +13,6 @@ import android.view.ViewGroup;
  */
 public class HomeTrendingListFragment extends Fragment {
 
-
     public HomeTrendingListFragment() {
         // Required empty public constructor
     }

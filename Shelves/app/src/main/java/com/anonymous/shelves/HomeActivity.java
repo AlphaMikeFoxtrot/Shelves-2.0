@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.anonymous.shelves.Adapters.HomeActivityViewPagerAdapter;
 import com.firebase.ui.auth.AuthUI;
@@ -54,6 +55,8 @@ public class HomeActivity extends AppCompatActivity {
         current_user = this.getSharedPreferences(getString(R.string.shared_preference_name), MODE_PRIVATE);
         editor = current_user.edit();
 
+        Toast.makeText(this, "" + current_user.getString(getString(R.string.shared_preference_user_uuid), "uuid not in shared preference"), Toast.LENGTH_SHORT).show();
+
         mToolbar = findViewById(R.id.home_act_tool);
         setSupportActionBar(mToolbar);
     }
@@ -79,6 +82,9 @@ public class HomeActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
 
                             editor.putBoolean(getString(R.string.shared_preference_login_boolean), true);
+                            editor.commit();
+
+                            editor.putString(getString(R.string.shared_preference_user_uuid), "");
                             editor.commit();
 
                             Intent toMain = new Intent(HomeActivity.this, MainActivity.class);

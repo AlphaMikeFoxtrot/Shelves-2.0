@@ -26,6 +26,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,10 +35,12 @@ public class MainActivity extends AppCompatActivity {
 
     Button signInUp;
 
-    ProgressDialog progressDialog;
+    ProgressDialog progressDialog, progressDialog_get;
 
-    SharedPreferences current_user;
-    SharedPreferences.Editor editor;
+    public SharedPreferences current_user;
+    public SharedPreferences.Editor editor;
+
+    public String uuid;
 
     @Override
     public void onBackPressed() {
@@ -209,6 +212,17 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString(getString(R.string.shared_preference_username), username);
                 editor.commit();
 
+                try {
+                    editor.putString(getString(R.string.shared_preference_user_uuid), new GetUUID().execute(username).get());
+                    editor.commit();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    Toast.makeText(MainActivity.this, "InterruptedException : " + e.toString(), Toast.LENGTH_SHORT).show();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                    Toast.makeText(MainActivity.this, "ExecutionException : " + e.toString(), Toast.LENGTH_SHORT).show();
+                }
+
                 editor.putBoolean(getString(R.string.shared_preference_login_boolean), true);
                 editor.commit();
 
@@ -308,6 +322,17 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString(getString(R.string.shared_preference_username), username);
                 editor.commit();
 
+                try {
+                    editor.putString(getString(R.string.shared_preference_user_uuid), new GetUUID().execute(username).get());
+                    editor.commit();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    Toast.makeText(MainActivity.this, "InterruptedException : " + e.toString(), Toast.LENGTH_SHORT).show();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                    Toast.makeText(MainActivity.this, "ExecutionException : " + e.toString(), Toast.LENGTH_SHORT).show();
+                }
+
                 editor.putBoolean(getString(R.string.shared_preference_login_boolean), true);
                 editor.commit();
 
@@ -320,6 +345,88 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "" + s, Toast.LENGTH_SHORT).show();
 
             }
+        }
+    }
+
+    private class GetUUID extends AsyncTask<String, Void, String>{
+
+        public String username;
+
+        @Override
+        protected void onPreExecute() {
+            progressDialog_get = new ProgressDialog(MainActivity.this);
+            progressDialog_get.setMessage("getting credentials");
+            progressDialog_get.show();
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            username = strings[0];
+
+            HttpURLConnection httpURLConnection = null;
+            BufferedReader bufferedReader = null;
+            BufferedWriter bufferedWriter = null;
+
+            try {
+
+                URL url = new URL(getString(R.string.get_user_uuid_url));
+                httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.connect();
+
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(httpURLConnection.getOutputStream(), "UTF-8");
+                bufferedWriter = new BufferedWriter(outputStreamWriter);
+
+                String data = URLEncoder.encode("username", "UTF-8") +"="+ URLEncoder.encode(username, "UTF-8");
+
+                bufferedWriter.write(data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+
+                InputStreamReader inputStreamReader = new InputStreamReader(httpURLConnection.getInputStream());
+                bufferedReader = new BufferedReader(inputStreamReader);
+
+                String line;
+                StringBuilder response = new StringBuilder();
+
+                while((line = bufferedReader.readLine()) != null){
+
+                    response.append(line);
+
+                }
+
+                String[] response_array = response.toString().split(":");
+                uuid = response_array[1];
+
+                return uuid; // response.toString();
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                return "url";
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "io";
+            } finally {
+                if(httpURLConnection != null){
+                    httpURLConnection.disconnect();
+                }
+                if(bufferedReader != null){
+                    try {
+                        bufferedReader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+
+            progressDialog_get.dismiss();
+
         }
     }
 }
