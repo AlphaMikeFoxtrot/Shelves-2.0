@@ -1,9 +1,11 @@
 package com.anonymous.shelves;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,11 +24,26 @@ import java.util.ArrayList;
 public class HomeTrendingListFragment extends Fragment {
 
     RecyclerView mRecyclerView;
+
     HomeTrendingRVAdapter adapter;
+
     ArrayList<BookClass> books;
+
+    protected RecyclerView.LayoutManager mLayoutManager;
+    protected LayoutManagerType mCurrentLayoutManagerType;
+
+    private static final String KEY_LAYOUT_MANAGER = "layoutManager";
+    private static final int SPAN_COUNT = 2;
+
+    Context context;
 
     public HomeTrendingListFragment() {
         // Required empty public constructor
+    }
+
+    private enum LayoutManagerType {
+        GRID_LAYOUT_MANAGER,
+        LINEAR_LAYOUT_MANAGER
     }
 
 
@@ -34,13 +51,26 @@ public class HomeTrendingListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mRecyclerView = container.findViewById(R.id.home_trending_fragment_rv);
-        adapter = new HomeTrendingRVAdapter(container.getContext(), books);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(container.getContext()));
-        mRecyclerView.setHasFixedSize(true);
+
+        View rootView = inflater.inflate(R.layout.fragment_home_trending_list, container, false);
+
+        mRecyclerView = rootView.findViewById(R.id.home_trending_fragment_rv);
+        adapter = new HomeTrendingRVAdapter(getActivity(), books);
+
+        mLayoutManager = new LinearLayoutManager(getActivity());
+
+        mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
+
+        if (savedInstanceState != null) {
+            // Restore saved layout manager type.
+            mCurrentLayoutManagerType = (LayoutManagerType) savedInstanceState
+                    .getSerializable(KEY_LAYOUT_MANAGER);
+        }
+        setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
+
         mRecyclerView.setAdapter(adapter);
 
-        return inflater.inflate(R.layout.fragment_home_trending_list, container, false);
+        return rootView;
     }
 
     @Override
@@ -53,5 +83,32 @@ public class HomeTrendingListFragment extends Fragment {
         books.add(new BookClass("The Hobbit3", "someone", 6.5f));
         books.add(new BookClass("The Hobbit4", "someone", 6.5f));
         books.add(new BookClass("The Hobbit5", "someone", 6.5f));
+    }
+
+    public void setRecyclerViewLayoutManager(LayoutManagerType layoutManagerType) {
+        int scrollPosition = 0;
+
+        // If a layout manager has already been set, get current scroll position.
+        if (mRecyclerView.getLayoutManager() != null) {
+            scrollPosition = ((LinearLayoutManager) mRecyclerView.getLayoutManager())
+                    .findFirstCompletelyVisibleItemPosition();
+        }
+
+        switch (layoutManagerType) {
+            case GRID_LAYOUT_MANAGER:
+                mLayoutManager = new GridLayoutManager(getActivity(), SPAN_COUNT);
+                mCurrentLayoutManagerType = LayoutManagerType.GRID_LAYOUT_MANAGER;
+                break;
+            case LINEAR_LAYOUT_MANAGER:
+                mLayoutManager = new LinearLayoutManager(getActivity());
+                mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
+                break;
+            default:
+                mLayoutManager = new LinearLayoutManager(getActivity());
+                mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
+        }
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.scrollToPosition(scrollPosition);
     }
 }

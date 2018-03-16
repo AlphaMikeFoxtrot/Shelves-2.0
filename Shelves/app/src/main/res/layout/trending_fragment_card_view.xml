@@ -1,67 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+
+<LinearLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/card_view_height"
-    app:cardCornerRadius="@dimen/card_view_corner_radius"
-    android:minHeight="@dimen/card_view_min_height"
-    android:layout_margin="@dimen/card_view_layout_margin"
-    app:cardElevation="@dimen/card_view_elevation"
-    app:contentPadding="@dimen/card_view_content_padding">
+    android:layout_height="125dp">
 
-    <LinearLayout
+    <android.support.v7.widget.CardView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tool="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/book_cover_photo"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.4"
-            android:src="@mipmap/ic_launcher" />
+        app:cardCornerRadius="4dp"
+        android:layout_margin="6dp"
+        app:contentPadding="8dp">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="@dimen/card_view_linear_layout_height"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:padding="2dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/book_title"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:textStyle="bold"
-                tool:text="The Hobbit"
-                style="@style/TextAppearance.AppCompat.Headline"
-                android:textSize="@dimen/card_view_book_name_text_size"
-                android:fontFamily="sans-serif-smallcaps"
-                android:gravity="start|center"/>
-
-            <TextView
-                android:id="@+id/book_author"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                tool:text="by Manmohan Singh"
-                android:fontFamily="sans-serif-smallcaps"
-                android:gravity="start|top"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/book_genre_icon"
-                android:layout_width="48dp"
-                android:layout_height="0dp"
-                android:layout_weight="0.8"
-                android:src="@drawable/ic_tech"
-                android:layout_gravity="end"/>
+                android:id="@+id/book_cover_photo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4"
+                android:scaleType="fitCenter"
+                android:padding="12dp"
+                android:src="@drawable/shelves_logo" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="85dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:padding="2dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/book_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    tool:text="The Hobbit"
+                    style="@style/TextAppearance.AppCompat.Headline"
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:gravity="start|center"/>
+
+                <TextView
+                    android:id="@+id/book_author"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    tool:text="by Manmohan Singh"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:gravity="start|top"/>
+
+                <ImageView
+                    android:id="@+id/book_genre_icon"
+                    android:layout_width="48dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.8"
+                    android:src="@drawable/ic_tech"
+                    android:layout_gravity="end"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+    </android.support.v7.widget.CardView>
 
-</android.support.v7.widget.CardView>
+</LinearLayout>

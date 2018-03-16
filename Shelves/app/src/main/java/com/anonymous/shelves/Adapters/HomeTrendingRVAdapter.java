@@ -31,7 +31,7 @@ public class HomeTrendingRVAdapter extends RecyclerView.Adapter<HomeTrendingRVAd
     public HomeTrendingRVViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View listItemView;
-        listItemView = LayoutInflater.from(mContext).inflate(R.layout.trending_fragment_card_view, parent, false);
+        listItemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.trending_fragment_card_view, parent, false);
 
         return new HomeTrendingRVViewHolder(listItemView);
 
