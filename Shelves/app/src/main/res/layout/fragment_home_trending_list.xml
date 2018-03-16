@@ -6,13 +6,10 @@
     tools:context="com.anonymous.shelves.HomeTrendingListFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="TRENDING BOOKS"
-        android:fontFamily="sans-serif-smallcaps"
-        android:textStyle="bold"
-        style="@style/TextAppearance.AppCompat.Headline"
-        android:gravity="center" />
+        android:id="@+id/home_trending_fragment_rv"
+        android:layout_margin="12dp"/>
 
 </FrameLayout>

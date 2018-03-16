@@ -52,6 +52,14 @@
                 android:fontFamily="sans-serif-smallcaps"
                 android:gravity="start|top"/>
 
+            <ImageView
+                android:id="@+id/book_genre_icon"
+                android:layout_width="48dp"
+                android:layout_height="0dp"
+                android:layout_weight="0.8"
+                android:src="@drawable/ic_tech"
+                android:layout_gravity="end"/>
+
         </LinearLayout>
 
     </LinearLayout>
