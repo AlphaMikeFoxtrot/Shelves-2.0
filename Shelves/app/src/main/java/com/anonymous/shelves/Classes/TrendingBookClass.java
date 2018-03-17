@@ -4,16 +4,26 @@ package com.anonymous.shelves.Classes;
  * Created by ANONYMOUS on 16-Mar-18.
  */
 
-public class BookClass {
+public class TrendingBookClass {
 
-    private String mBookName, mBookAuthor;
+    private String mBookName, mBookAuthor, rank, rankLastWeek;
     private float mBookRating;
     private int mBookCoverId, mBookGenreId;
 
-    public BookClass(String mBookName, String mBookAuthor, float mBookRating) {
+    public TrendingBookClass(String mBookName, String mBookAuthor, float mBookRating, String rank, String rankLastWeek) {
         this.mBookName = mBookName;
         this.mBookAuthor = mBookAuthor;
         this.mBookRating = mBookRating;
+        this.rank = rank;
+        this.rankLastWeek = rankLastWeek;
+    }
+
+    public String getRank() {
+        return rank;
+    }
+
+    public String getRankLastWeek() {
+        return rankLastWeek;
     }
 
     public String getmBookName() {

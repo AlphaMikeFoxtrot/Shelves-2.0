@@ -55,8 +55,6 @@ public class HomeActivity extends AppCompatActivity {
         current_user = this.getSharedPreferences(getString(R.string.shared_preference_name), MODE_PRIVATE);
         editor = current_user.edit();
 
-        Toast.makeText(this, "" + current_user.getString(getString(R.string.shared_preference_user_uuid), "uuid not in shared preference"), Toast.LENGTH_SHORT).show();
-
         mToolbar = findViewById(R.id.home_act_tool);
         setSupportActionBar(mToolbar);
     }

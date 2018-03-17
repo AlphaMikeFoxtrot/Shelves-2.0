@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="125dp">
+
+
 
     <android.support.v7.widget.CardView
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -14,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardCornerRadius="4dp"
-        android:layout_margin="6dp"
+        android:layout_margin="4dp"
         app:contentPadding="8dp">
 
         <LinearLayout
@@ -29,7 +30,7 @@
                 android:layout_weight="0.4"
                 android:scaleType="fitCenter"
                 android:padding="12dp"
-                android:src="@drawable/shelves_logo" />
+                android:src="@drawable/image_not_found" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -60,13 +61,32 @@
                     android:fontFamily="sans-serif-smallcaps"
                     android:gravity="start|top"/>
 
-                <ImageView
-                    android:id="@+id/book_genre_icon"
-                    android:layout_width="48dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="0.8"
-                    android:src="@drawable/ic_tech"
-                    android:layout_gravity="end"/>
+                    android:gravity="start"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/book_rank"
+                        tool:text="Rank : 1"
+                        android:textStyle="bold"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_gravity="end"/>
+
+                    <TextView
+                        android:id="@+id/book_rank_last_week"
+                        tool:text="Rank Last Week : 1"
+                        android:textStyle="bold"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_gravity="end"/>
+
+                </LinearLayout>
 
             </LinearLayout>
 

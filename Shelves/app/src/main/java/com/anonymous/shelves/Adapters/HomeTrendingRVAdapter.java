@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.anonymous.shelves.Classes.BookClass;
+import com.anonymous.shelves.Classes.TrendingBookClass;
 import com.anonymous.shelves.R;
 
 import java.util.ArrayList;
@@ -20,9 +20,9 @@ import java.util.ArrayList;
 public class HomeTrendingRVAdapter extends RecyclerView.Adapter<HomeTrendingRVAdapter.HomeTrendingRVViewHolder> {
 
     Context mContext;
-    ArrayList<BookClass> mBooks = new ArrayList<>();
+    ArrayList<TrendingBookClass> mBooks = new ArrayList<>();
 
-    public HomeTrendingRVAdapter(Context mContext, ArrayList<BookClass> mBooks) {
+    public HomeTrendingRVAdapter(Context mContext, ArrayList<TrendingBookClass> mBooks) {
         this.mContext = mContext;
         this.mBooks = mBooks;
     }
@@ -42,8 +42,9 @@ public class HomeTrendingRVAdapter extends RecyclerView.Adapter<HomeTrendingRVAd
 
         holder.mBookName.setText(this.mBooks.get(position).getmBookName());
         holder.mBookAuthor.setText(this.mBooks.get(position).getmBookAuthor());
+        holder.mBookRank.setText(this.mBooks.get(position).getRank());
+        holder.mBookRankLastWeek.setText(this.mBooks.get(position).getRankLastWeek());
         // holder.mBookCover.setImageResource(this.mBooks.get(position).getmBookGenreId());
-        // holder.mBookGenreIcon.setImageResource(this.mBooks.get(position).getmBookGenreId());
 
     }
 
@@ -54,17 +55,18 @@ public class HomeTrendingRVAdapter extends RecyclerView.Adapter<HomeTrendingRVAd
 
     public class HomeTrendingRVViewHolder extends RecyclerView.ViewHolder{
 
-        ImageView mBookCover, mBookGenreIcon;
-        TextView mBookName, mBookAuthor;
+        ImageView mBookCover;
+        TextView mBookName, mBookAuthor, mBookRank, mBookRankLastWeek;
 
         public HomeTrendingRVViewHolder(View itemView) {
             super(itemView);
 
             this.mBookCover = itemView.findViewById(R.id.book_cover_photo);
-            this.mBookGenreIcon = itemView.findViewById(R.id.book_genre_icon);
 
             this.mBookName = itemView.findViewById(R.id.book_title);
             this.mBookAuthor = itemView.findViewById(R.id.book_author);
+            this.mBookRank = itemView.findViewById(R.id.book_rank);
+            this.mBookRankLastWeek = itemView.findViewById(R.id.book_rank_last_week);
         }
     }
 
