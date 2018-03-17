@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.anonymous.shelves.Classes.TrendingBookClass;
 import com.anonymous.shelves.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -44,7 +45,11 @@ public class HomeTrendingRVAdapter extends RecyclerView.Adapter<HomeTrendingRVAd
         holder.mBookAuthor.setText(this.mBooks.get(position).getmBookAuthor());
         holder.mBookRank.setText(this.mBooks.get(position).getRank());
         holder.mBookRankLastWeek.setText(this.mBooks.get(position).getRankLastWeek());
-        // holder.mBookCover.setImageResource(this.mBooks.get(position).getmBookGenreId());
+        if(this.mBooks.get(position).getmBookCoverURL().isEmpty()) {
+            holder.mBookCover.setImageResource(R.drawable.image_not_found);
+        } else {
+            Picasso.get().load(this.mBooks.get(position).getmBookCoverURL()).into(holder.mBookCover);
+        }
 
     }
 

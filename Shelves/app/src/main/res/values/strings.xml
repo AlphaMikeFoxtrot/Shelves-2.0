@@ -6,6 +6,7 @@
     <string name="check_username_url">http://fardeenpanjwani.com/library/login/check_login.php</string>
     <string name="create_user_url">http://fardeenpanjwani.com/library/insert/insert_new_user.php</string>
     <string name="get_user_uuid_url">http://fardeenpanjwani.com/library/get/get_uuid.php</string>
+    <string name="get_google_books_base_url">https://www.googleapis.com/books/v1/volumes?q=isbn:</string>
     <string name="get_bestseller_ny_times">https://api.nytimes.com/svc/books/v3/lists.json?list=hardcover-fiction&amp;api-key=0e0bdc62a8a34068a04c91fc38eda500</string>
 
     <!--****************************** Shared Preferences ******************************************-->

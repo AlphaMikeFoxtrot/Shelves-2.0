@@ -10,9 +10,11 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.anonymous.shelves.Adapters.HomeTrendingRVAdapter;
 import com.anonymous.shelves.Classes.TrendingBookClass;
@@ -38,8 +40,9 @@ public class HomeTrendingListFragment extends Fragment {
 
     RecyclerView mRecyclerView;
 
+    private static final String TAG = "GETTING IMAGE";
+
     HomeTrendingRVAdapter adapter;
-    private static final String TAG = "HomeFragment";
 
     ProgressDialog progressDialog;
 
@@ -174,8 +177,18 @@ public class HomeTrendingListFragment extends Fragment {
                     JSONObject details = book_details.getJSONObject(0);
                     String title = details.getString("title");
                     String author = details.getString("author");
+                    String isbn = details.getString("primary_isbn10");
 
-                    TrendingBookClass currentBook = new TrendingBookClass(title, author, 0.0f, "Rank : " + String.valueOf(i+1), "Rank Last Week : " + rankLastWeek);
+                    // String cover_url = new GetCoverURL().execute(isbn).get();
+
+                    TrendingBookClass currentBook = new TrendingBookClass(title,
+                            author,
+                            0.0f,
+                            "Rank : " + String.valueOf(i+1),
+                            "Rank Last Week : " + rankLastWeek,
+                            isbn,
+                            "");
+
                     books.add(currentBook);
 
                 }
@@ -209,6 +222,73 @@ public class HomeTrendingListFragment extends Fragment {
         @Override
         protected void onPostExecute(ArrayList<TrendingBookClass> trendingBookClasses) {
             progressDialog.dismiss();
+        }
+    }
+
+    private class GetCoverURL extends AsyncTask<String, Void, String>{
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            Log.v(TAG, "getting image");
+
+            String isbn = strings[0];
+            String cover_url;
+
+            HttpURLConnection httpURLConnection = null;
+            BufferedReader bufferedReader = null;
+
+            String isbn_url = getString(R.string.get_google_books_base_url) + isbn;
+
+            try {
+
+                URL url = new URL(isbn_url);
+                httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("GET");
+                httpURLConnection.connect();
+
+                InputStreamReader inputStreamReader = new InputStreamReader(httpURLConnection.getInputStream());
+                bufferedReader = new BufferedReader(inputStreamReader);
+
+                String line;
+                StringBuilder response = new StringBuilder();
+
+                while ((line = bufferedReader.readLine()) != null) {
+
+                    response.append(line);
+
+                }
+
+                JSONObject root = new JSONObject(response.toString());
+
+                if(root.getString("totalItems") == "0"){
+
+                    // isbn not found
+                    cover_url = "";
+                    return cover_url;
+
+                } else {
+
+                    // book exists
+                    JSONArray items = root.getJSONArray("items");
+                    JSONObject book = items.getJSONObject(0);
+                    JSONObject volumeInfo = book.getJSONObject("volumeInfo");
+                    JSONObject imageLink = volumeInfo.getJSONObject("imageLinks");
+                    cover_url = imageLink.getString("thumbnail");
+                    return cover_url;
+
+                }
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                return "";
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "";
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return "";
+            }
         }
     }
 }
