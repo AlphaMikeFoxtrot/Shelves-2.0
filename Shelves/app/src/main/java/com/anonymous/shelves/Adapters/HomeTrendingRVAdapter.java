@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.anonymous.shelves.Classes.TrendingBookClass;
 import com.anonymous.shelves.R;
@@ -34,7 +35,7 @@ public class HomeTrendingRVAdapter extends RecyclerView.Adapter<HomeTrendingRVAd
         View listItemView;
         listItemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.trending_fragment_card_view, parent, false);
 
-        return new HomeTrendingRVViewHolder(listItemView);
+        return new HomeTrendingRVViewHolder(listItemView, mContext, mBooks);
 
     }
 
@@ -58,13 +59,20 @@ public class HomeTrendingRVAdapter extends RecyclerView.Adapter<HomeTrendingRVAd
         return mBooks.size();
     }
 
-    public class HomeTrendingRVViewHolder extends RecyclerView.ViewHolder{
+    public class HomeTrendingRVViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         ImageView mBookCover;
         TextView mBookName, mBookAuthor, mBookRank, mBookRankLastWeek;
+        ArrayList<TrendingBookClass> books;
+        Context context;
 
-        public HomeTrendingRVViewHolder(View itemView) {
+        public HomeTrendingRVViewHolder(View itemView, Context context, ArrayList<TrendingBookClass> books) {
             super(itemView);
+
+            itemView.setOnClickListener(this);
+
+            this.context = context;
+            this.books = books;
 
             this.mBookCover = itemView.findViewById(R.id.book_cover_photo);
 
@@ -72,6 +80,14 @@ public class HomeTrendingRVAdapter extends RecyclerView.Adapter<HomeTrendingRVAd
             this.mBookAuthor = itemView.findViewById(R.id.book_author);
             this.mBookRank = itemView.findViewById(R.id.book_rank);
             this.mBookRankLastWeek = itemView.findViewById(R.id.book_rank_last_week);
+        }
+
+        @Override
+        public void onClick(View view) {
+
+            int position = getAdapterPosition();
+            Toast.makeText(context, "name of book clicked : " + this.books.get(position).getmBookName(), Toast.LENGTH_SHORT).show();
+
         }
     }
 
