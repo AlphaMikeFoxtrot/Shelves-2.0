@@ -1,6 +1,8 @@
 package com.anonymous.shelves.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.Toast;
 
 import com.anonymous.shelves.Classes.TrendingBookClass;
 import com.anonymous.shelves.R;
+import com.anonymous.shelves.TrendingBookDetailsActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -46,11 +49,6 @@ public class HomeTrendingRVAdapter extends RecyclerView.Adapter<HomeTrendingRVAd
         holder.mBookAuthor.setText(this.mBooks.get(position).getmBookAuthor());
         holder.mBookRank.setText(this.mBooks.get(position).getRank());
         holder.mBookRankLastWeek.setText(this.mBooks.get(position).getRankLastWeek());
-        if(this.mBooks.get(position).getmBookCoverURL().isEmpty()) {
-            holder.mBookCover.setImageResource(R.drawable.image_not_found);
-        } else {
-            Picasso.get().load(this.mBooks.get(position).getmBookCoverURL()).into(holder.mBookCover);
-        }
 
     }
 
@@ -61,7 +59,6 @@ public class HomeTrendingRVAdapter extends RecyclerView.Adapter<HomeTrendingRVAd
 
     public class HomeTrendingRVViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        ImageView mBookCover;
         TextView mBookName, mBookAuthor, mBookRank, mBookRankLastWeek;
         ArrayList<TrendingBookClass> books;
         Context context;
@@ -74,8 +71,6 @@ public class HomeTrendingRVAdapter extends RecyclerView.Adapter<HomeTrendingRVAd
             this.context = context;
             this.books = books;
 
-            this.mBookCover = itemView.findViewById(R.id.book_cover_photo);
-
             this.mBookName = itemView.findViewById(R.id.book_title);
             this.mBookAuthor = itemView.findViewById(R.id.book_author);
             this.mBookRank = itemView.findViewById(R.id.book_rank);
@@ -86,7 +81,11 @@ public class HomeTrendingRVAdapter extends RecyclerView.Adapter<HomeTrendingRVAd
         public void onClick(View view) {
 
             int position = getAdapterPosition();
-            Toast.makeText(context, "name of book clicked : " + this.books.get(position).getmBookName(), Toast.LENGTH_SHORT).show();
+            Intent toDetails = new Intent(context, TrendingBookDetailsActivity.class);
+            toDetails.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            toDetails.putExtra("book", (Parcelable) this.books.get(position));
+            context.startActivity(toDetails);
+            // Toast.makeText(context, "name of book clicked : " + this.books.get(position).getmBookName(), Toast.LENGTH_SHORT).show();
 
         }
     }

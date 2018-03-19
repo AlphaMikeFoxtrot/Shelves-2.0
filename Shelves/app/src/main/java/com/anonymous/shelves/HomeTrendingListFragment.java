@@ -1,6 +1,7 @@
 package com.anonymous.shelves;
 
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -178,6 +179,7 @@ public class HomeTrendingListFragment extends Fragment {
                     String title = details.getString("title");
                     String author = details.getString("author");
                     String isbn = details.getString("primary_isbn10");
+                    String description = details.getString("description");
 
                     // String cover_url = new GetCoverURL().execute(isbn).get();
 
@@ -187,7 +189,8 @@ public class HomeTrendingListFragment extends Fragment {
                             "Rank : " + String.valueOf(i+1),
                             "Rank Last Week : " + rankLastWeek,
                             isbn,
-                            "");
+                            "",
+                            description);
 
                     books.add(currentBook);
 

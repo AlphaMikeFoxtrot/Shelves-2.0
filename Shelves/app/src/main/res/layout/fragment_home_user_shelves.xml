@@ -3,11 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="12dp"
+    android:background="@color/colorAccent"
     tools:context="com.anonymous.shelves.HomeUserShelvesFragment">
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/home_trending_fragment_rv"/>
+
 
 </FrameLayout>

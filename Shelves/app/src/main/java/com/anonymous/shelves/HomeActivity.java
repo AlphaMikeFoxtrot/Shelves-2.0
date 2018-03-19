@@ -1,6 +1,7 @@
 package com.anonymous.shelves;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
@@ -28,6 +29,29 @@ public class HomeActivity extends AppCompatActivity {
 
     ViewPager mViewPager;
     com.anonymous.shelves.Adapters.HomeActivityViewPagerAdapter homeActivityViewPagerAdapter;
+
+    NetworkChangeReceiver receiver;
+    Boolean flag = false;
+    IntentFilter filter;
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(flag) {
+            unregisterReceiver(receiver);
+            flag = false;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(flag) {
+            unregisterReceiver(receiver);
+            flag = false;
+        }
+    }
+
 
     @Override
     public void onBackPressed() {

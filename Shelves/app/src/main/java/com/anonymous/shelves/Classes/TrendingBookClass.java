@@ -6,18 +6,23 @@ package com.anonymous.shelves.Classes;
 
 public class TrendingBookClass {
 
-    private String mBookName, mBookAuthor, rank, rankLastWeek, mBookISBN, mBookCoverURL;
+    private String mBookName, mBookDescription, mBookAuthor, rank, rankLastWeek, mBookISBN, mBookCoverURL;
     private float mBookRating;
     private int mBookGenreId;
 
-    public TrendingBookClass(String mBookName, String mBookAuthor, float mBookRating, String rank, String rankLastWeek, String mBookISBN, String mBookCoverURL) {
+    public TrendingBookClass(String mBookName, String mBookAuthor, float mBookRating, String rank, String rankLastWeek, String mBookISBN, String mBookCoverURL, String mBookDescription) {
         this.mBookName = mBookName;
         this.mBookAuthor = mBookAuthor;
         this.mBookRating = mBookRating;
         this.rank = rank;
         this.rankLastWeek = rankLastWeek;
         this.mBookISBN = mBookISBN;
+        this.mBookDescription = mBookDescription;
         this.mBookCoverURL = mBookCoverURL;
+    }
+
+    public String getmBookDescription() {
+        return mBookDescription;
     }
 
     public String getmBookISBN() {
