@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     <style name="MyOverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
-        <item name="android:tint">#ffffff</item>
+        <item name="android:tint">@android:color/white</item>
     </style>
     <style name="MyRatingBar" parent="Theme.AppCompat">
         <item name="colorControlNormal">@android:color/black</item>
