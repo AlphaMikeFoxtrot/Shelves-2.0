@@ -8,6 +8,8 @@
     <string name="get_user_uuid_url">http://fardeenpanjwani.com/library/get/get_uuid.php</string>
     <string name="get_goodreads_books_base_url">https://www.goodreads.com/book/isbn/</string>
     <string name="get_google_books_base_url">https://www.googleapis.com/books/v1/volumes?q=isbn:</string>
+    <string name="get_google_books">https://www.googleapis.com/books/v1/volumes?maxResults=40&amp;q=</string>
+    <string name="get_goodreads_book">https://www.goodreads.com/search/index.xml?key=PD86Pp9gK5x9cTiskvdRQ&amp;q=</string>
     <string name="get_bestseller_ny_times">https://api.nytimes.com/svc/books/v3/lists.json?list=hardcover-fiction&amp;api-key=0e0bdc62a8a34068a04c91fc38eda500</string>
 
     <!--****************************** Shared Preferences ******************************************-->

@@ -1,6 +1,7 @@
 package com.anonymous.shelves;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.MenuItemCompat;
@@ -22,9 +24,24 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.anonymous.shelves.Adapters.HomeActivityViewPagerAdapter;
+import com.anonymous.shelves.Classes.Book;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.reflect.Array;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -32,6 +49,8 @@ public class HomeActivity extends AppCompatActivity {
 
     SharedPreferences current_user;
     SharedPreferences.Editor editor;
+
+    ProgressDialog progressDialog;
 
     TabLayout mTabLayout;
 
@@ -99,28 +118,14 @@ public class HomeActivity extends AppCompatActivity {
         MenuItem mSearch = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) mSearch.getActionView();
 
-        menuItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
-            @Override
-            public boolean onMenuItemActionExpand(MenuItem menuItem) {
-                if (getSupportActionBar() != null) {
-                    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
-                }
-                return true;
-            }
-
-            @Override
-            public boolean onMenuItemActionCollapse(MenuItem menuItem) {
-                if (getSupportActionBar() != null) {
-                    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimary)));
-                }
-                return true;
-            }
-        });
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 Toast.makeText(HomeActivity.this, "" + query, Toast.LENGTH_SHORT).show();
+                Intent toSearchResults = new Intent(HomeActivity.this, SearchResultsActivity.class);
+                toSearchResults.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                toSearchResults.putExtra("query", query);
+                startActivity(toSearchResults);
                 return true;
             }
 
