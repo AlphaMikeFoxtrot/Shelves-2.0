@@ -2,7 +2,9 @@ package com.anonymous.shelves;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.renderscript.ScriptGroup;
 import android.support.v7.app.AppCompatActivity;
@@ -42,6 +44,28 @@ public class MainActivity extends AppCompatActivity {
 
     public String uuid;
 
+    NetworkChangeReceiver receiver;
+    Boolean flag = false;
+    IntentFilter filter;
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(flag) {
+            unregisterReceiver(receiver);
+            flag = false;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(flag) {
+            unregisterReceiver(receiver);
+            flag = false;
+        }
+    }
+
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -54,6 +78,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        receiver = new NetworkChangeReceiver();
+        registerReceiver(receiver, filter);
+        flag = true;
 
         current_user = this.getSharedPreferences(getString(R.string.shared_preference_name), MODE_PRIVATE);
         editor = current_user.edit();

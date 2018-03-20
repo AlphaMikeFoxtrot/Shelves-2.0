@@ -42,8 +42,7 @@
             android:layout_height="200dp"
             tools:src="@mipmap/ic_launcher"
             android:layout_gravity="center"
-            android:layout_margin="12dp"
-            android:scaleType="centerCrop" />
+            android:layout_margin="12dp"/>
 
         <TextView
             android:id="@+id/book_detail_book_title"
@@ -69,20 +68,20 @@
             android:gravity="center"
             android:layout_gravity="center"
             android:layout_margin="12dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
             android:orientation="horizontal">
 
             <RatingBar
                 android:id="@+id/book_detail_book_rating"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 style="@style/Widget.AppCompat.RatingBar.Small"
-                android:layout_gravity="center"
-                android:stepSize="0.1"
+                android:theme="@style/MyRatingBar"
                 android:layout_margin="4dp"
-                tools:rating="10"
-                android:theme="@style/MyRatingBar" />
+                android:numStars="5"
+                android:stepSize="0.1"
+                tools:rating="1" />
 
             <TextView
                 android:id="@+id/book_detail_book_rating_text"
@@ -146,6 +145,7 @@
             android:layout_height="wrap_content"
             tools:text="aldjflkajdfklajdfljljfadslfjlkadsjflkasjfljadslfjasdklfjadsklfjasklfjdasljfladjflkasjfladsjflafjlasfjlsajfldsjflkdjflkajfladsjfaldjflkajdfklajdfljljfadslfjlkadsjflkasjfljadslfjasdklfjadsklfjasklfjdasljfladjflkasjfladsjflafjlasfjlsajfldsjflkdjflkajfladsjfaldjflkajdfklajdfljljfadslfjlkadsjflkasjfljadslfjasdklfjadsklfjasklfjdasljfladjflkasjfladsjflafjlasfjlsajfldsjflkdjflkajfladsjfaldjflkajdfklajdfljljfadslfjlkadsjflkasjfljadslfjasdklfjadsklfjasklfjdasljfladjflkasjfladsjflafjlasfjlsajfldsjflkdjflkajfladsjfaldjflkajdfklajdfljljfadslfjlkadsjflkasjfljadslfjasdklfjadsklfjasklfjdasljfladjflkasjfladsjflafjlasfjlsajfldsjflkdjflkajfladsjfaldjflkajdfklajdfljljfadslfjlkadsjflkasjfljadslfjasdklfjadsklfjasklfjdasljfladjflkasjfladsjflafjlasfjlsajfldsjflkdjflkajfladsjfaldjflkajdfklajdfljljfadslfjlkadsjflkasjfljadslfjasdklfjadsklfjasklfjdasljfladjflkasjfladsjflafjlasfjlsajfldsjflkdjflkajfladsjfaldjflkajdfklajdfljljfadslfjlkadsjflkasjfljadslfjasdklfjadsklfjasklfjdasljfladjflkasjfladsjflafjlasfjlsajfldsjflkdjflkajfladsjfaldjflkajdfklajdfljljfadslfjlkadsjflkasjfljadslfjasdklfjadsklfjasklfjdasljfladjflkasjfladsjflafjlasfjlsajfldsjflkdjflkajfladsjfaldjflkajdfklajdfljljfadslfjlkadsjflkasjfljadslfjasdklfjadsklfjasklfjdasljfladjflkasjfladsjflafjlasfjlsajfldsjflkdjflkajfladsjfaldjflkajdfklajdfljljfadslfjlkadsjflkasjfljadslfjasdklfjadsklfjasklfjdasljfladjflkasjfladsjflafjlasfjlsajfldsjflkdjflkajfladsjfaldjflkajdfklajdfljljfadslfjlkadsjflkasjfljadslfjasdklfjadsklfjasklfjdasljfladjflkasjfladsjflafjlasfjlsajfldsjflkdjflkajfladsjf"
             android:textColor="@android:color/white"
+            android:lineSpacingExtra="4dp"
             android:fontFamily="sans-serif-smallcaps"
             android:paddingTop="4dp"
             android:ellipsize="end"

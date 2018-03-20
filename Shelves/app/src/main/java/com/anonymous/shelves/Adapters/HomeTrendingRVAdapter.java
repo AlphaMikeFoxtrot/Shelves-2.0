@@ -16,6 +16,7 @@ import com.anonymous.shelves.R;
 import com.anonymous.shelves.TrendingBookDetailsActivity;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -83,7 +84,10 @@ public class HomeTrendingRVAdapter extends RecyclerView.Adapter<HomeTrendingRVAd
             int position = getAdapterPosition();
             Intent toDetails = new Intent(context, TrendingBookDetailsActivity.class);
             toDetails.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            toDetails.putExtra("book", (Parcelable) this.books.get(position));
+
+            TrendingBookClass book = this.books.get(position);
+
+            toDetails.putExtra("book", (Parcelable) book);
             context.startActivity(toDetails);
             // Toast.makeText(context, "name of book clicked : " + this.books.get(position).getmBookName(), Toast.LENGTH_SHORT).show();
 

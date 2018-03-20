@@ -1,10 +1,13 @@
 package com.anonymous.shelves.Classes;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by ANONYMOUS on 16-Mar-18.
  */
 
-public class TrendingBookClass {
+public class TrendingBookClass implements Parcelable{
 
     private String mBookName, mBookDescription, mBookAuthor, rank, rankLastWeek, mBookISBN, mBookCoverURL;
     private float mBookRating;
@@ -20,6 +23,30 @@ public class TrendingBookClass {
         this.mBookDescription = mBookDescription;
         this.mBookCoverURL = mBookCoverURL;
     }
+
+    protected TrendingBookClass(Parcel in) {
+        mBookName = in.readString();
+        mBookDescription = in.readString();
+        mBookAuthor = in.readString();
+        rank = in.readString();
+        rankLastWeek = in.readString();
+        mBookISBN = in.readString();
+        mBookCoverURL = in.readString();
+        mBookRating = in.readFloat();
+        mBookGenreId = in.readInt();
+    }
+
+    public static final Creator<TrendingBookClass> CREATOR = new Creator<TrendingBookClass>() {
+        @Override
+        public TrendingBookClass createFromParcel(Parcel in) {
+            return new TrendingBookClass(in);
+        }
+
+        @Override
+        public TrendingBookClass[] newArray(int size) {
+            return new TrendingBookClass[size];
+        }
+    };
 
     public String getmBookDescription() {
         return mBookDescription;
@@ -71,5 +98,23 @@ public class TrendingBookClass {
 
     public void setmBookRating(float mBookRating) {
         this.mBookRating = mBookRating;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(mBookName);
+        parcel.writeString(mBookDescription);
+        parcel.writeString(mBookAuthor);
+        parcel.writeString(rank);
+        parcel.writeString(rankLastWeek);
+        parcel.writeString(mBookISBN);
+        parcel.writeString(mBookCoverURL);
+        parcel.writeFloat(mBookRating);
+        parcel.writeInt(mBookGenreId);
     }
 }
