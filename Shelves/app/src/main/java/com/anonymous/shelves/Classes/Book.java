@@ -1,10 +1,14 @@
 package com.anonymous.shelves.Classes;
 
+import android.content.ComponentName;
+import android.content.ServiceConnection;
+import android.os.IBinder;
+
 /**
  * Created by ANONYMOUS on 20-Mar-18.
  */
 
-public class Book {
+public class Book implements ServiceConnection{
 
     private String name, author, ratings, ratingsCount, imageUrl, description, isbn, pageCount, publishedDate, genre;
 
@@ -86,5 +90,15 @@ public class Book {
 
     public String getPublishedDate() {
         return publishedDate;
+    }
+
+    @Override
+    public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+
+    }
+
+    @Override
+    public void onServiceDisconnected(ComponentName componentName) {
+
     }
 }

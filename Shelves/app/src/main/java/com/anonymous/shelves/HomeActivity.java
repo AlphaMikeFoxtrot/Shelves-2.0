@@ -121,11 +121,11 @@ public class HomeActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(HomeActivity.this, "" + query, Toast.LENGTH_SHORT).show();
-                Intent toSearchResults = new Intent(HomeActivity.this, SearchResultsActivity.class);
-                toSearchResults.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                toSearchResults.putExtra("query", query);
-                startActivity(toSearchResults);
+                // Toast.makeText(HomeActivity.this, "" + query, Toast.LENGTH_SHORT).show();
+                Intent toResults = new Intent(HomeActivity.this, SearchResultActivity.class);
+                toResults.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                toResults.putExtra("query", query);
+                startActivity(toResults);
                 return true;
             }
 
