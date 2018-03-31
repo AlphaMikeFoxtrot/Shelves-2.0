@@ -6,9 +6,8 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
-import android.renderscript.ScriptGroup;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -96,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 new AuthUI.IdpConfig.EmailBuilder().build()
         );
 
-        if(mAuth.getCurrentUser() != null){
+        if(mAuth.getCurrentUser() != null || current_user.getBoolean(getString(R.string.shared_preference_login_boolean), false)){
             // already signed in
             Intent toHome = new Intent(this, HomeActivity.class);
             toHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -140,7 +139,9 @@ public class MainActivity extends AppCompatActivity {
 
                 // Sign in failed, check response for error code
                 // ...
-                Toast.makeText(this, "" + requestCode, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(this, "" + requestCode, Toast.LENGTH_SHORT).show();
+                checkIfExists("test");
+
 
             }
         }

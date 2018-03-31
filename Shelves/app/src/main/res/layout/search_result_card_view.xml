@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="150dp">
+
+    <android.support.v7.widget.CardView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tool="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
+        app:cardBackgroundColor="@color/colorAccent"
+        app:cardCornerRadius="2dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginBottom="4dp"
+        app:contentPadding="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:padding="2dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textColor="@color/textColor"
+                    android:id="@+id/search_result_book_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="2"
+                    android:textStyle="bold"
+                    tool:text="The Hobbit"
+                    style="@style/TextAppearance.AppCompat.Headline"
+                    android:textSize="22sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="sans-serif-smallcaps"/>
+
+                <TextView
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:id="@+id/search_result_book_author"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tool:text="by Manmohan Singh"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:gravity="center_vertical"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:orientation="horizontal">
+
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Base.Widget.AppCompat.RatingBar.Small"
+                        android:stepSize="0.1"
+                        android:layout_gravity="center"
+                        android:theme="@style/MyRatingBar"
+                        android:id="@+id/search_result_rating_bar"
+                        tool:rating="5.0f"/>
+
+                    <TextView
+                        android:id="@+id/search_result_rating_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-smallcaps"
+                        android:layout_margin="4dp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"
+                        android:textColor="@android:color/white"
+                        tool:text="3.5(325434)" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

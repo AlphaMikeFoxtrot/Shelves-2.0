@@ -28,7 +28,8 @@
             android:configChanges="orientation|keyboardHidden"
             android:parentActivityName=".HomeActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".SearchResultActivity"></activity>
+        <activity android:name=".SearchResultActivity"
+            android:parentActivityName=".HomeActivity"></activity>
     </application>
 
 </manifest>

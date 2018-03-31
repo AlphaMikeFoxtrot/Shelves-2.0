@@ -10,7 +10,15 @@ import android.os.IBinder;
 
 public class Book implements ServiceConnection{
 
-    private String name, author, ratings, ratingsCount, imageUrl, description, isbn, pageCount, publishedDate, genre;
+    private String name, author, ratings, ratingsCount, imageUrl, description, isbn, pageCount, publishedDate, genre, selfLink;
+
+    public String getSelfLink() {
+        return selfLink;
+    }
+
+    public void setSelfLink(String selfLink) {
+        this.selfLink = selfLink;
+    }
 
     public String getGenre() {
         return genre;
